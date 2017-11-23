@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    provided
+    compile.extendsFrom provided
+}
+
+dependencies {
+    provided("com.google.code.gson:gson:2.6.2")
+    testCompile("org.assertj:assertj-core:3.4.1")
+    testCompile("junit:junit:4.12")
+}
+
+jar {
+    dependsOn configurations.runtime
+    from {
+        (configurations.runtime - configurations.provided).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
