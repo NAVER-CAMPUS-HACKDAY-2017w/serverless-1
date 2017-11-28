@@ -45,6 +45,7 @@ Most commonly used templates:
 - openwhisk-python
 - openwhisk-php
 - openwhisk-swift
+- openwhisk-java-gradle
 - plugin
 
 ## Examples

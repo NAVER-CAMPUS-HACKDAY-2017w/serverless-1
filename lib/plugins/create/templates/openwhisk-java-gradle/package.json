@@ -1,0 +1,13 @@
+{
+  "name": "openwhisk-java-gradle",
+  "version": "1.0.0",
+  "description": "Sample OpenWhisk Java/Gradle serverless framework service.",
+  "main": "src/main/java/com/navercorp/Function.java",
+  "scripts": {
+    "postinstall": "npm link serverless-openwhisk serverless-openwhisk-java-gradle"
+  },
+  "keywords": [
+    "serverless",
+    "openwhisk"
+  ]
+}
