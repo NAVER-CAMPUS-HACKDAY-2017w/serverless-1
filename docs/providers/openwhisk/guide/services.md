@@ -52,8 +52,6 @@ Here are the available runtimes for Apache OpenWhisk:
 * openwhisk-php
 * openwhisk-python
 * openwhisk-swift
-* openwhisk-java-gradle
-
 
 Check out the [create command docs](../cli-reference/create) for all the details and options.
 
