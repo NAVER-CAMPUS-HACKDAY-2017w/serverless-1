@@ -11,17 +11,36 @@ configurations {
     compile.extendsFrom provided
 }
 
-dependencies {
-    provided("com.google.code.gson:gson:2.6.2")
-    testCompile("org.assertj:assertj-core:3.4.1")
-    testCompile("junit:junit:4.12")
-}
 
 jar {
     dependsOn configurations.runtime
+
     from {
         (configurations.runtime - configurations.provided).collect {
             it.isDirectory() ? it : zipTree(it)
         }
     }
+
+    if(project.hasProperty('includeInvoker')) {
+        sourceSets.main.java.srcDirs += "src/invoker/java"
+        setVersion(null)
+        archivesBaseName = 'FunctionLoader'
+        manifest {
+            attributes 'Main-Class': 'FunctionLoader'
+        }
+    }
+    else
+    {
+        archivesBaseName ='Handler'
+    }
+
+}
+
+String gson = "com.google.code.gson:gson:2.6.2"
+
+dependencies {
+    (project.hasProperty('includeInvoker') ? compile(gson) : provided(gson))
+
+    testCompile("org.assertj:assertj-core:3.4.1")
+    testCompile("junit:junit:4.12")
 }
